@@ -1,4 +1,6 @@
 import org.w3c.dom.*;
+
+import javax.xml.namespace.NamespaceContext;
 import javax.xml.parsers.*;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
@@ -12,7 +14,7 @@ import java.util.List;
 public class GetNoReturn {
     public static void main(String[] args) throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(true);
+        //factory.setNamespaceAware(true);
         DocumentBuilder builder;
         Document doc = null;
         try {
@@ -23,13 +25,13 @@ public class GetNoReturn {
 
             // Create XPath object
             XPath xpath = xpathFactory.newXPath();
+            
             XPathExpression expr = xpath.compile("//class/block/function/name");
-            String result = (String) expr.evaluate(doc, XPathConstants.STRING);
+            Object result = expr.evaluate(doc, XPathConstants.STRING);
             System.out.println(result);
-
             
 
-        } catch (ParserConfigurationException e) {
+        } catch (Exception e) {
             e.printStackTrace();  
         }
         
