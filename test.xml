@@ -7,5 +7,22 @@
             <return>return;</return>
         </block_content>}</block></if></if_stmt>
     </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>getsomething</name><parameter_list>()</parameter_list><block>{<block_content>
+        <decl_stmt><decl><type><name>int</name></type> <name>n</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>getthing</name><parameter_list>()</parameter_list><block>{<block_content>
+        <decl_stmt><decl><type><name>int</name></type> <name>n</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>getString</name><parameter_list>()</parameter_list><block>{<block_content>
+        <decl_stmt><decl><type><name>String</name></type> <name>num</name> <init>= <expr><literal type="string">"eeee1"</literal></expr></init></decl>;</decl_stmt>
+        <return>return <expr><name>num</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setString</name><parameter_list>()</parameter_list><block>{<block_content>
+        <decl_stmt><decl><type><name>String</name></type> <name>num</name> <init>= <expr><literal type="string">"num"</literal></expr></init></decl>;</decl_stmt>
+    </block_content>}</block></function>
 }</block></class>
 </unit>

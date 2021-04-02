@@ -5,10 +5,11 @@ import javax.xml.parsers.*;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-
-
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GetNoReturn {
@@ -25,15 +26,29 @@ public class GetNoReturn {
 
             // Create XPath object
             XPath xpath = xpathFactory.newXPath();
-            
-            XPathExpression expr = xpath.compile("//class/block/function/name");
-            Object result = expr.evaluate(doc, XPathConstants.STRING);
-            System.out.println(result);
+
+            List<String> nodes = getNoReturn(doc, xpath);
+            System.out.println(Arrays.toString(nodes.toArray()));
             
 
         } catch (Exception e) {
             e.printStackTrace();  
         }
         
+    }
+
+    private static List<String> getNoReturn(Document doc, XPath xpath) {
+        List<String> list = new ArrayList<>();
+        try {
+            //create XPathExpression object
+            XPathExpression expr = xpath.compile("/unit/class/block/function[type/name='void'][starts-with(./name,substring('get',1,3))]/name");
+            //evaluate expression result on XML document
+            NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
+            for (int i = 0; i < nodes.getLength(); i++)
+                list.add(nodes.item(i).getTextContent());
+        } catch (XPathExpressionException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }
