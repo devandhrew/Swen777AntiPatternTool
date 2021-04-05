@@ -13,7 +13,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class GetNoReturn {
+/**
+ * The main class used for the detection of the lingustic anti-pattenrs using the parsing of xml
+ * Current LAs:
+ *      A.1 "Get" - more than accessor
+ *      //TODO: A.2 "Is" Returns more than a boolean
+ *      A.3 "Set" - method returns
+ * @created    3/31/21
+ * @last_edit  4/5/21
+ * @author     Devan Lad <>
+ * @author     Stephen Cook <sjc5897@rit.edu>
+ */
+public class LingusticAntipatternTool {
     public static void main(String[] args) throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         //factory.setNamespaceAware(true);
@@ -89,9 +100,11 @@ public class GetNoReturn {
                 }
             }
         }
+        // Catch XPathExpression Errors
         catch (XPathExpressionException e){
             e.printStackTrace();
         }
+        //Returns the name of violating strings.
         return violating_strings;
     }
 }
