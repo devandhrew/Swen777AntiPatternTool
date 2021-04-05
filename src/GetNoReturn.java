@@ -20,7 +20,7 @@ public class GetNoReturn {
         Document doc = null;
         try {
             builder = factory.newDocumentBuilder();
-            doc = builder.parse("test.xml");
+            doc = builder.parse("springframework.xml");
             // Create XPathFactory object
             XPathFactory xpathFactory = XPathFactory.newInstance();
 
@@ -28,6 +28,7 @@ public class GetNoReturn {
             XPath xpath = xpathFactory.newXPath();
 
             List<String> nodes = getNoReturn(doc, xpath);
+            System.out.println(nodes.size());
             System.out.println(Arrays.toString(nodes.toArray()));
             
 
@@ -41,7 +42,7 @@ public class GetNoReturn {
         List<String> list = new ArrayList<>();
         try {
             //create XPathExpression object
-            XPathExpression expr = xpath.compile("/unit/class/block/function[type/name='void'][starts-with(./name,substring('get',1,3))]/name");
+            XPathExpression expr = xpath.compile("/unit//unit/class/block/function[type/name='void'][starts-with(./name,substring('get',1,3)) or starts-with(./name,substring('return',1,6))]/name");
             //evaluate expression result on XML document
             NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
             for (int i = 0; i < nodes.getLength(); i++)
