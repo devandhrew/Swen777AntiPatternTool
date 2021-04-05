@@ -1,6 +1,7 @@
+package src;
+
 import org.w3c.dom.*;
 
-import javax.xml.namespace.NamespaceContext;
 import javax.xml.parsers.*;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
@@ -20,7 +21,7 @@ public class GetNoReturn {
         Document doc = null;
         try {
             builder = factory.newDocumentBuilder();
-            doc = builder.parse("springframework.xml");
+            doc = builder.parse("test.xml");
             // Create XPathFactory object
             XPathFactory xpathFactory = XPathFactory.newInstance();
 
@@ -30,12 +31,18 @@ public class GetNoReturn {
             List<String> nodes = getNoReturn(doc, xpath);
             System.out.println(nodes.size());
             System.out.println(Arrays.toString(nodes.toArray()));
-            
+
+            nodes = getSetMethodReturns(doc, xpath);
+            System.out.println(nodes.size());
+            System.out.println(Arrays.toString(nodes.toArray()));
+
+
+
 
         } catch (Exception e) {
-            e.printStackTrace();  
+            e.printStackTrace();
         }
-        
+
     }
 
     private static List<String> getNoReturn(Document doc, XPath xpath) {
@@ -51,5 +58,40 @@ public class GetNoReturn {
             e.printStackTrace();
         }
         return list;
+    }
+
+    /**
+     * This method looks for identifiers with "set" in the name and checks that it is a void return
+     * This is an algorithm for rule A.3, "Set" method returns.
+     * "A set method having a return type different than void AND not documenting the return type/value
+     *  with comments"
+     * @param doc       The document (source file xml) being parsed
+     * @param xpath     xPath variaable used to assist in the parsing ogf the xml
+     * @return          List of methods names that violate the Set method returns
+     */
+    private static List<String> getSetMethodReturns(Document doc, XPath xpath){
+        List<String> violating_strings = new ArrayList<>();      //Storage ret value, returns the list of strings violating the rule
+        try{
+            //create the XPathExpression Object
+            // //function//name[contains(text(), 'set')]/.. <= gets the all functions with set in the name
+            // Gets all set methods
+            XPathExpression expr = xpath.compile("//function//name[contains(text(), 'set')]/..");
+            NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
+
+            // Get non-void methods
+            for (int i = 0; i < nodes.getLength(); i++) {
+                // Check if void function
+                // TODO: This should be done using xpath, this would likely trigger if the function has void in the name
+                // ^ Potental antipattern?
+                if(!nodes.item(i).getTextContent().contains("void")) {
+                    //TODO: As part of this LA, comments should be checked
+                    violating_strings.add(nodes.item(i).getTextContent());
+                }
+            }
+        }
+        catch (XPathExpressionException e){
+            e.printStackTrace();
+        }
+        return violating_strings;
     }
 }
