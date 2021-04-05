@@ -86,7 +86,7 @@ public class LingusticAntipatternTool {
             //create the XPathExpression Object
             // //function[not(contains(type/name,'void'))][starts-with(name,'set')] <= gets the all functions with set in the name
             // Gets all set methods
-            XPathExpression expr = xpath.compile("//function[not(contains(type/name,'void'))][starts-with(name,'set')]");
+            XPathExpression expr = xpath.compile("//function[not(contains(type/name,'void'))][starts-with(name,'set')]/name");
             NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
 
             // Get non-void methods
