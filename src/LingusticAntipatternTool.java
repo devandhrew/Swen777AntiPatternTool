@@ -84,21 +84,19 @@ public class LingusticAntipatternTool {
         List<String> violating_strings = new ArrayList<>();      //Storage ret value, returns the list of strings violating the rule
         try{
             //create the XPathExpression Object
-            // //function//name[contains(text(), 'set')]/.. <= gets the all functions with set in the name
+            // //function[not(contains(type/name,'void'))][starts-with(name,'set')] <= gets the all functions with set in the name
             // Gets all set methods
-            XPathExpression expr = xpath.compile("//function//name[contains(text(), 'set')]/..");
+            XPathExpression expr = xpath.compile("//function[not(contains(type/name,'void'))][starts-with(name,'set')]");
             NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
 
             // Get non-void methods
             for (int i = 0; i < nodes.getLength(); i++) {
                 // Check if void function
                 // TODO: This should be done using xpath, this would likely trigger if the function has void in the name
-                // ^ Potental antipattern?
-                if(!nodes.item(i).getTextContent().contains("void")) {
-                    //TODO: As part of this LA, comments should be checked
-                    violating_strings.add(nodes.item(i).getTextContent());
+                // ^ Potental antipattern?{
+                //TODO: As part of this LA, comments should be checked
+                violating_strings.add(nodes.item(i).getTextContent());
                 }
-            }
         }
         // Catch XPathExpression Errors
         catch (XPathExpressionException e){
