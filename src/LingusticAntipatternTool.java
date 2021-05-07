@@ -20,7 +20,7 @@ import java.util.List;
  *      //TODO: A.2 "Is" Returns more than a boolean
  *      A.3 "Set" - method returns
  * @created    3/31/21
- * @last_edit  4/5/21
+ * @last_edit  5/7/21
  * @author     Devan Lad <>
  * @author     Stephen Cook <sjc5897@rit.edu>
  */
@@ -32,7 +32,7 @@ public class LingusticAntipatternTool {
         Document doc = null;
         try {
             builder = factory.newDocumentBuilder();
-            doc = builder.parse("test.xml");
+            doc = builder.parse("spring-framework.xml");
             // Create XPathFactory object
             XPathFactory xpathFactory = XPathFactory.newInstance();
 
@@ -47,6 +47,10 @@ public class LingusticAntipatternTool {
             System.out.println(nodes.size());
             System.out.println(Arrays.toString(nodes.toArray()));
 
+            nodes = getIsReturnsMoreThanBoolean(doc, xpath);
+            System.out.println(nodes.size());
+            System.out.println(Arrays.toString(nodes.toArray()));
+
 
 
 
@@ -54,6 +58,21 @@ public class LingusticAntipatternTool {
             e.printStackTrace();
         }
 
+    }
+
+    private static List<String> getIsReturnsMoreThanBoolean(Document doc, XPath xpath) {
+        List<String> list = new ArrayList<>();
+        try {
+            //create XPathExpression object
+            XPathExpression expr = xpath.compile("//function[not(contains(type/name,'boolean') or contains(type/name, 'void'))][starts-with(name,'is')]/name");
+            //evaluate expression result on XML document
+            NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
+            for (int i = 0; i < nodes.getLength(); i++)
+                list.add(nodes.item(i).getTextContent());
+        } catch (XPathExpressionException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     private static List<String> getNoReturn(Document doc, XPath xpath) {
@@ -86,7 +105,7 @@ public class LingusticAntipatternTool {
             //create the XPathExpression Object
             // //function[not(contains(type/name,'void'))][starts-with(name,'set')] <= gets the all functions with set in the name
             // Gets all set methods
-            XPathExpression expr = xpath.compile("//function[not(contains(type/name,'void'))][starts-with(name,'set')]");
+            XPathExpression expr = xpath.compile("//function[not(contains(type/name,'void'))][starts-with(name,'set')]/name");
             NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
 
             // Get non-void methods
