@@ -54,10 +54,8 @@ public class LingusticAntipatternTool {
         System.out.println ("Running Check: B.3 \"Get\" method does not return\"");
         nodes = getNoReturn(doc, xpath);
         printTestResult(nodes);
-
-
+        
     }
-
     /**
      * Function to get the XML file path from the user and create the xml doc
      * @return  document: XML Document
@@ -106,19 +104,46 @@ public class LingusticAntipatternTool {
         //print the nodes out
     }
 
-    private static List<String> getNoReturn(Document doc, XPath xpath) {
-        List<String> list = new ArrayList<>();
+    /**
+     * Helper function that runs the xpath expression and parses the return data
+     * @param expr      The Expresion to test
+     * @param doc       The document the expresion needs to be ran on
+     * @return  A list of violating methods
+     */
+    private static List<String> runXpathExpr(XPathExpression expr, Document doc){
+        List<String> violating_methods = new ArrayList<>();
         try {
-            //create XPathExpression object
-            XPathExpression expr = xpath.compile("/unit//unit/class/block/function[type/name='void'][starts-with(./name,substring('get',1,3)) or starts-with(./name,substring('return',1,6))]/name");
-            //evaluate expression result on XML document
+            //evaluates the xpath var
             NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
-            for (int i = 0; i < nodes.getLength(); i++)
-                list.add(nodes.item(i).getTextContent());
-        } catch (XPathExpressionException e) {
+
+            //Iterates through results
+            for (int i = 0; i < nodes.getLength(); i++){
+                //Adding them to a list
+                violating_methods.add(nodes.item(i).getTextContent());
+            }
+        }
+        //Catch execption
+        catch (XPathExpressionException e){
             e.printStackTrace();
         }
-        return list;
+        //return list
+        return violating_methods;
+    }
+
+
+    private static List<String> getNoReturn(Document doc, XPath xpath) {
+        List<String> violating_methods = new ArrayList<>();
+        try {
+            //Create and run the xpath expression
+            XPathExpression expr = xpath.compile("/unit//unit/class/block/function[type/name='void'][starts-with(./name,substring('get',1,3)) or starts-with(./name,substring('return',1,6))]/name");
+            violating_methods =  runXpathExpr(expr, doc);
+        }
+        //catch xpath expression exception
+        catch(XPathExpressionException e){
+            e.printStackTrace();
+        }
+        //Return list of violating methods
+        return violating_methods;
     }
 
 
@@ -131,32 +156,19 @@ public class LingusticAntipatternTool {
      * @param xpath     xPath variaable used to assist in the parsing ogf the xml
      * @return          List of methods names that violate the Set method returns
      */
-    private static List<String> getSetMethodReturns(Document doc, XPath xpath){
-        List<String> violating_strings = new ArrayList<>();      //Storage ret value, returns the list of strings violating the rule
-        try{
+    private static List<String> getSetMethodReturns(Document doc, XPath xpath) {
+        List<String> violating_methods = new ArrayList<>();
+        try {
             //create the XPathExpression Object
             // //function[not(contains(type/name,'void'))][starts-with(name,'set')] <= gets the all functions with set in the name
             // Gets all set methods
             XPathExpression expr = xpath.compile("//function[not(contains(type/name,'void'))][starts-with(name,'set')]");
-            NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
-
-            // Get non-void methods
-            for (int i = 0; i < nodes.getLength(); i++) {
-                String function_name = nodes.item(i).getTextContent();
-                //Get the class
-                expr = xpath.compile("//class[contains(function,'" + function_name + "')]");
-                NodeList nodes2 = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
-                System.out.print(nodes2);
-
-
-                violating_strings.add(nodes.item(i).getTextContent());
-                }
+            violating_methods =  runXpathExpr(expr, doc);
         }
         // Catch XPathExpression Errors
-        catch (XPathExpressionException e){
+        catch (XPathExpressionException e) {
             e.printStackTrace();
         }
-        //Returns the name of violating strings.
-        return violating_strings;
+        return violating_methods;
     }
 }
