@@ -43,11 +43,6 @@ public class LingusticAntipatternTool {
             //Get test xml file from user
             doc = getXMLDocument();
 
-            //as part of setup
-            System.out.println("INFO: Document found, Doing Initial Parse");
-            getUnitNotes();
-            System.out.println("INFO: Parsing Complete");
-
 
             //Run A.2 "Is" returns more than a boolean
             //        System.out.println ("Running Check: A.2 \"Is\" returns more than a boolean\"");
@@ -58,6 +53,7 @@ public class LingusticAntipatternTool {
             System.out.println("INFO: Running Check: A.3 \"Set\" method returns");
             violation_map = getSetMethodReturns();
             printTestResult(violation_map);
+            System.out.println("INFO: Check Complete: A.3 \"Set\" method returns");
 
             //        //Run B.3 "Get" method does not return
             //        System.out.println ("Running Check: B.3 \"Get\" method does not return");
@@ -110,66 +106,65 @@ public class LingusticAntipatternTool {
      * @param nodes The violations that occur
      */
     private static void printTestResult(HashMap<String, ArrayList<String>> nodes){
-        //TODO: Edit to fit HashMap Better
+        int total_count = 0;
         //Print the number of antipatterns found
-        System.out.println("Number of Detected Anti-pattern: " + nodes.size());
+        System.out.println("\tAnti-pattern detected in " + nodes.size() + " file(s):");
 
         //print the nodes out
-        for(String class_name : nodes.keySet()){
-            if( nodes.get(class_name).size() == 0){
-                break;
-            }
-            String print_str = "\t";
-            System.out.println(class_name);
-            for(String method_name : nodes.get(class_name)){
+        for(String file_name : nodes.keySet()){
+            total_count += nodes.get(file_name).size();
+            System.out.println("\t\tFile: \"" + file_name + "\" \tNumber of Violations: " + nodes.get(file_name).size());
+            String print_str = "\t\t\tViolating Methods: ";
+            for(String method_name : nodes.get(file_name)){
                 print_str += method_name + ", ";
             }
             System.out.println(print_str);
         }
+        System.out.println("\tTotal Violations: " + total_count);
     }
 
     /**
-     * Does an intial parse of the document getting all of the unit nodes
+     *
+     * @param str_expr
+     * @return
      */
-    private static NodeList getUnitNotes(){
-        String expr_str = "//unit/unit[@filename]";                 //the expression string
-        try{
-            //create xpath to get all units
-            //Evaluate and set unit note
-            unit_list =  (NodeList) x_path.evaluate(expr_str,doc,XPathConstants.NODESET);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     private static HashMap<String,ArrayList<String>> getViolatingMethods(String str_expr){
         //Hash Map to store our information. The Key is the Class, the Array is the list of methods in that string which violate
         //First get all class info
         HashMap<String,ArrayList<String>> violating_methods = new HashMap<>();
-        try {
+        try{
             //Compile the expr
             XPathExpression expr = x_path.compile(str_expr);
-            //Iterate through the unit nodes
-            for (int index = 0; index < unit_list.getLength(); index++) {
 
-                Element currentNode = (Element) unit_list.item(index);
-                //Evaluate the expression on the unit_note
-                NodeList nodes = (NodeList) expr.evaluate(currentNode,XPathConstants.NODESET);
+            //Run expression
+            NodeList nodes = (NodeList) expr.evaluate(doc,XPathConstants.NODESET);
 
-                //If we have a result
-                if (nodes.getLength() > 0) {
-                    //add to violate methods hash_map
-                    String node = unit_list.item(index).getAttributes().getNamedItem("filename").toString();
-                    violating_methods.put(node, new ArrayList<>());
-                    for (int index_2 = 0; index_2 < nodes.getLength(); index_2++) {
-                        violating_methods.get(node).add(nodes.item(index_2).getTextContent());
-                    }
+            //For each found node
+            for(int index = 0; index < nodes.getLength(); index++){
+
+                //Get node
+                Node current_node = nodes.item(index);
+
+                //Get parent node
+                Node parent_node = current_node.getParentNode();
+
+                //Climb until we reach the parent node
+                while (!parent_node.getNodeName().equals("unit")){
+                    parent_node = parent_node.getParentNode();
                 }
+
+                //Get relevant info
+                String file_name = parent_node.getAttributes().getNamedItem("filename").getTextContent();
+                //Gets the method name
+                String method_name = current_node.getTextContent();
+
+                //Add to hash map
+                if(!violating_methods.containsKey(file_name)){
+                    violating_methods.put(file_name,new ArrayList<>());
+                }
+                violating_methods.get(file_name).add(method_name);
             }
         }
-
         catch(Exception e){
             e.printStackTrace();
         }
@@ -185,11 +180,11 @@ public class LingusticAntipatternTool {
      * @return          List of methods names that violate the Set method returns
      */
     private static HashMap<String,ArrayList<String>> getSetMethodReturns() {
-        HashMap<String,ArrayList<String>> violating_methods = new HashMap<>();
-        String str_expr = "class/block/function[" +
+        HashMap<String,ArrayList<String>> violating_methods;
+        String str_expr = "//function[" +
                 "not(contains(annotation/name, 'Test')) and " +             //Eliminates Test functions
                 "not(contains(type/name,'void'))]" +                        //Gets methods are not void
-                "[starts-with(translate(name,'SET','set'),'set')]"+          //Gets methods that start with set
+                "[starts-with(translate(name,'SET','set'),'set')]" +          //Gets methods that start with set
                 "/name";
 
         violating_methods =  getViolatingMethods(str_expr);
