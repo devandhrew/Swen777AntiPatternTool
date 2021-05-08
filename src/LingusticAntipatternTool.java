@@ -151,6 +151,8 @@ public class LingusticAntipatternTool {
         //Hash Map to store our information. The Key is the Class, the Array is the list of methods in that string which violate
         //First get all class info
         HashMap<String,ArrayList<String>> violating_methods = new HashMap<>();
+        
+
         try{
             //Compile the expr
             XPathExpression expr = x_path.compile(str_expr);
@@ -229,8 +231,8 @@ public class LingusticAntipatternTool {
      */
     private static HashMap<String,ArrayList<String>> getNoReturn() {
         String str_expr = "//function[" +                                           //Gets function
-                "not(contains(annotation/name,'Test') and " +                      //That is not test
-                "contains(type/name, 'void'))]" +                               //and not void
+                "not(contains(annotation/name,'Test')) and " +                      //That is not test
+                "contains(type/name, 'void')]" +                                    //and is void
                 "[(starts-with(translate(name,'GET','get'), 'get')) or" +              //That starts with get
                 "(starts-with(translate(name,'RETURN','return'),'return'))]" +       //Or return
                 "/name";                                                            //the function name
