@@ -18,6 +18,7 @@ import java.util.*;
 /**
  * The main class used for the detection of the lingustic anti-pattenrs using the parsing of xml
  * Current LAs:
+ *      A.1 "Get" - more than accessor
  *      //TODO: A.2 "Is" Returns more than a boolean
  *      A.3 "Set" - method returns
  *      B.3 "Get" - does not return
@@ -73,6 +74,7 @@ public class LingusticAntipatternTool {
         String file_path = ui_scanner.nextLine();           //gets file path from user
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        //factory.setNamespaceAware(true);
         DocumentBuilder builder;
         Document doc = null;
 
@@ -119,6 +121,21 @@ public class LingusticAntipatternTool {
             System.out.println(print_str);
         }
         System.out.println("\tTotal Violations: " + total_count);
+    }
+
+    private static List<String> getIsReturnsMoreThanBoolean(Document doc, XPath xpath) {
+        List<String> list = new ArrayList<>();
+        try {
+            //create XPathExpression object
+            XPathExpression expr = xpath.compile("//function[not(contains(type/name,'boolean') or contains(type/name, 'void'))][starts-with(name,'is')]/name");
+            //evaluate expression result on XML document
+            NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
+            for (int i = 0; i < nodes.getLength(); i++)
+                list.add(nodes.item(i).getTextContent());
+        } catch (XPathExpressionException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     /**
@@ -170,17 +187,13 @@ public class LingusticAntipatternTool {
         return violating_methods;
     }
 
-
-
-
-
-    
-
     /**
      * This method looks for identifiers with "set" in the name and checks that it is a void return
      * This is an algorithm for rule A.3, "Set" method returns.
      * "A set method having a return type different than void AND not documenting the return type/value
      *  with comments"
+     * @param doc       The document (source file xml) being parsed
+     * @param xpath     xPath variaable used to assist in the parsing ogf the xml
      * @return          List of methods names that violate the Set method returns
      */
     private static HashMap<String,ArrayList<String>> getSetMethodReturns() {
