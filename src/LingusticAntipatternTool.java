@@ -22,20 +22,18 @@ import java.util.*;
  *      A.3 "Set" - method returns
  *      B.3 "Get" - does not return
  * @created    3/31/21
- * @last_edit  4/5/21
+ * @last_edit  5/8/21
  * @author     Devan Lad <>
  * @author     Stephen Cook <sjc5897@rit.edu>
  */
 public class LingusticAntipatternTool {
-        static XPath x_path;
-        static Document doc;
-        static NodeList unit_list;
-
+        static XPath x_path;            //x_path
+        static Document doc;            //current_doc
 
     public static void main(String[] args) throws Exception {
         HashMap<String,ArrayList<String>>  violation_map;           //A changing map of the violations for a test
         XPathFactory xpathFactory = XPathFactory.newInstance();     //Creates the XPATH Factory
-        x_path = xpathFactory.newXPath();                      //Creates the XPATH object
+        x_path = xpathFactory.newXPath();                           //Creates the XPATH object
 
         //Run forever
         while(true) {
@@ -124,9 +122,9 @@ public class LingusticAntipatternTool {
     }
 
     /**
-     *
-     * @param str_expr
-     * @return
+     * Takes in a string expression and runs the expression. Then parses the return information for relevant info
+     * @param str_expr  The xpath expression
+     * @return          A HashMap with file names as keys and an array of violating strings as values
      */
     private static HashMap<String,ArrayList<String>> getViolatingMethods(String str_expr){
         //Hash Map to store our information. The Key is the Class, the Array is the list of methods in that string which violate
@@ -171,6 +169,12 @@ public class LingusticAntipatternTool {
         //return list
         return violating_methods;
     }
+
+
+
+
+
+    
 
     /**
      * This method looks for identifiers with "set" in the name and checks that it is a void return
