@@ -18,8 +18,7 @@ import java.util.*;
 /**
  * The main class used for the detection of the lingustic anti-pattenrs using the parsing of xml
  * Current LAs:
- *      A.1 "Get" - more than accessor
- *      //TODO: A.2 "Is" Returns more than a boolean
+ *      A.2 "Is" Returns more than a boolean
  *      A.3 "Set" - method returns
  *      B.3 "Get" - does not return
  * @created    3/31/21
@@ -44,9 +43,10 @@ public class LingusticAntipatternTool {
 
 
             //Run A.2 "Is" returns more than a boolean
-            //        System.out.println ("Running Check: A.2 \"Is\" returns more than a boolean\"");
-            //        nodes = getIsReturnsMoreThanBool(doc, xpath);
-            //        printTestResult(nodes);
+            System.out.println ("INFO: Running Check: A.2 \"Is\" returns more than a boolean");
+            violation_map = getIsReturnsMoreThanBoolean();
+            printTestResult(violation_map);
+            System.out.println("INFO: Check Complete: A.2 \"Is\" returns more than a boolean");
 
             //Run A.3 "Set" - method returns
             System.out.println("INFO: Running Check: A.3 \"Set\" method returns");
@@ -54,11 +54,12 @@ public class LingusticAntipatternTool {
             printTestResult(violation_map);
             System.out.println("INFO: Check Complete: A.3 \"Set\" method returns");
 
-            //        //Run B.3 "Get" method does not return
-            //        System.out.println ("Running Check: B.3 \"Get\" method does not return");
-            //        nodes = getNoReturn(doc, xpath);
-            //        printTestResult(nodes);
-
+            //Run B.3 "Get" method does not return
+            System.out.println ("INFO: Running Check: B.3 \"Get\" method does not return");
+            violation_map = getNoReturn();
+            printTestResult(violation_map);
+            System.out.println ("INFO: Check Complete: B.3 \"Get\" method does not return");
+            
             //TODO: Get if user wishes to continue
         }
 
@@ -123,21 +124,6 @@ public class LingusticAntipatternTool {
         System.out.println("\tTotal Violations: " + total_count);
     }
 
-    private static List<String> getIsReturnsMoreThanBoolean(Document doc, XPath xpath) {
-        List<String> list = new ArrayList<>();
-        try {
-            //create XPathExpression object
-            XPathExpression expr = xpath.compile("//function[not(contains(type/name,'boolean') or contains(type/name, 'void'))][starts-with(name,'is')]/name");
-            //evaluate expression result on XML document
-            NodeList nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
-            for (int i = 0; i < nodes.getLength(); i++)
-                list.add(nodes.item(i).getTextContent());
-        } catch (XPathExpressionException e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
     /**
      * Takes in a string expression and runs the expression. Then parses the return information for relevant info
      * @param str_expr  The xpath expression
@@ -187,24 +173,51 @@ public class LingusticAntipatternTool {
         return violating_methods;
     }
 
+
     /**
-     * This method looks for identifiers with "set" in the name and checks that it is a void return
-     * This is an algorithm for rule A.3, "Set" method returns.
-     * "A set method having a return type different than void AND not documenting the return type/value
-     *  with comments"
-     * @param doc       The document (source file xml) being parsed
-     * @param xpath     xPath variaable used to assist in the parsing ogf the xml
-     * @return          List of methods names that violate the Set method returns
+     * CHECK A.2: "Is" Returns more than a boolean
+     *
+     * @return  Hash map of violating strings
+     */
+    private static  HashMap<String,ArrayList<String>> getIsReturnsMoreThanBoolean() {
+        String str_expr = "//function[" +                                //Functions
+                "not(contains(annotation/name, 'Test')) and (" +         //Not Noted as tests
+                "not(contains(type/name,'boolean') or +" +               //And Does not have return type Bool
+                "contains(type/name, 'void'))] " +                        //Or Void
+                "[starts-with(translate(name,'IS','is'),'is')]" +       //and starts with is
+                "/name";                                                //get the name
+        return getViolatingMethods(str_expr);
+    }
+
+    /**
+     * CHECK A.3: "Set" method returns
+     *
+     * @return          List of methods names that violate this rule
      */
     private static HashMap<String,ArrayList<String>> getSetMethodReturns() {
-        HashMap<String,ArrayList<String>> violating_methods;
         String str_expr = "//function[" +
                 "not(contains(annotation/name, 'Test')) and " +             //Eliminates Test functions
                 "not(contains(type/name,'void'))]" +                        //Gets methods are not void
                 "[starts-with(translate(name,'SET','set'),'set')]" +          //Gets methods that start with set
                 "/name";
 
-        violating_methods =  getViolatingMethods(str_expr);
-        return violating_methods;
+        return getViolatingMethods(str_expr);
+    }
+
+    /**
+     * CHECK B.3: "Get" does not return
+     *
+     * @return          List of methods names that violate this rule
+     */
+    private static HashMap<String,ArrayList<String>> getNoReturn() {
+        String str_expr = "//function[" +                                           //Gets function
+                "not(contains(annotation/name, 'Test')) and" +                      //That is not test
+                "not(contains(type/name,'void'))]" +                                //and not void
+                "[starts-with(translate(name,'GET','get'),'get') or" +              //That starts with get
+                "[starts-with(translate(name,'RETURN','return'),'return')]" +       //Or return
+                "/name";                                                            //the function name
+
+
+        return getViolatingMethods(str_expr);
     }
 }
