@@ -29,18 +29,21 @@ import java.util.*;
 public class LingusticAntipatternTool {
         static XPath x_path;            //x_path
         static Document doc;            //current_doc
+        static Scanner ui_scanner;      //Scanner for user input
+
 
     public static void main(String[] args) throws Exception {
         HashMap<String,ArrayList<String>>  violation_map;           //A changing map of the violations for a test
         XPathFactory xpathFactory = XPathFactory.newInstance();     //Creates the XPATH Factory
-        x_path = xpathFactory.newXPath();                           //Creates the XPATH object
+        x_path = xpathFactory.newXPath();           //Creates the XPATH object
+        ui_scanner = new Scanner(System.in);        //creates our scanner object
 
         //Run forever
         while(true) {
 
             //Get test xml file from user
             doc = getXMLDocument();
-
+            System.out.println ("INFO: Starting Checks");
 
             //Run A.2 "Is" returns more than a boolean
             System.out.println ("INFO: Running Check: A.2 \"Is\" returns more than a boolean");
@@ -59,8 +62,11 @@ public class LingusticAntipatternTool {
             violation_map = getNoReturn();
             printTestResult(violation_map);
             System.out.println ("INFO: Check Complete: B.3 \"Get\" method does not return");
-            
-            //TODO: Get if user wishes to continue
+
+            System.out.println ("INFO: All Checks complete");
+            if(!getContinue()){
+                break;
+            }
         }
 
     }
@@ -69,7 +75,6 @@ public class LingusticAntipatternTool {
      * @return  document: XML Document
      */
     private static Document getXMLDocument(){
-        Scanner ui_scanner = new Scanner(System.in);        //creates our scanner object
         System.out.println("Enter XML File Path: ");        //request file
 
         String file_path = ui_scanner.nextLine();           //gets file path from user
@@ -100,6 +105,19 @@ public class LingusticAntipatternTool {
             e.printStackTrace();
         }
         return doc;
+    }
+
+    private static boolean getContinue(){
+        System.out.println("Do you wish to continue: (y/n)");
+        String resp = ui_scanner.nextLine();
+        while(!resp.equals("y") && !resp.equals("n")){
+            System.out.println("Invalid input: y/n");
+            resp = ui_scanner.nextLine();
+        }
+        if(resp.equals("y")){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -182,8 +200,8 @@ public class LingusticAntipatternTool {
     private static  HashMap<String,ArrayList<String>> getIsReturnsMoreThanBoolean() {
         String str_expr = "//function[" +                                //Functions
                 "not(contains(annotation/name, 'Test')) and (" +         //Not Noted as tests
-                "not(contains(type/name,'boolean') or +" +               //And Does not have return type Bool
-                "contains(type/name, 'void'))] " +                        //Or Void
+                "not(contains(type/name,'boolean') or " +               //And Does not have return type Bool
+                "contains(type/name, 'void')))] " +                        //Or Void
                 "[starts-with(translate(name,'IS','is'),'is')]" +       //and starts with is
                 "/name";                                                //get the name
         return getViolatingMethods(str_expr);
@@ -211,12 +229,11 @@ public class LingusticAntipatternTool {
      */
     private static HashMap<String,ArrayList<String>> getNoReturn() {
         String str_expr = "//function[" +                                           //Gets function
-                "not(contains(annotation/name, 'Test')) and" +                      //That is not test
-                "not(contains(type/name,'void'))]" +                                //and not void
-                "[starts-with(translate(name,'GET','get'),'get') or" +              //That starts with get
-                "[starts-with(translate(name,'RETURN','return'),'return')]" +       //Or return
+                "not(contains(annotation/name,'Test') and " +                      //That is not test
+                "contains(type/name, 'void'))]" +                               //and not void
+                "[(starts-with(translate(name,'GET','get'), 'get')) or" +              //That starts with get
+                "(starts-with(translate(name,'RETURN','return'),'return'))]" +       //Or return
                 "/name";                                                            //the function name
-
 
         return getViolatingMethods(str_expr);
     }
