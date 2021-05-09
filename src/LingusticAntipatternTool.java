@@ -107,6 +107,10 @@ public class LingusticAntipatternTool {
         return doc;
     }
 
+    /**
+     * Gets user response for wish to continue
+     * @return  Boolean, does the user wish to continue
+     */
     private static boolean getContinue(){
         System.out.println("Do you wish to continue: (y/n)");
         String resp = ui_scanner.nextLine();
