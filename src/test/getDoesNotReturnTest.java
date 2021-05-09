@@ -102,8 +102,8 @@ public class getDoesNotReturnTest {
 
     //6
     //created method, starts with word
-    public String getawayMessage(){
-        return "bye";
+    public void getawayMessage(){
+
     }
 
     //7
