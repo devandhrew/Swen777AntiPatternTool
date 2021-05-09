@@ -207,7 +207,7 @@ public class LingusticAntipatternTool {
         String str_expr = "//function[" +                                //Functions
                 "not(contains(annotation/name, 'Test')) and (" +         //Not Noted as tests
                 "not(contains(type/name,'boolean') or " +               //And Does not have return type Bool
-                "contains(type/name, 'void')))] " +                        //Or Void
+                "contains(type/name, 'Boolean)))] " +                        //Or Capital Boolean
                 "[starts-with(translate(name,'IS','is'),'is')]" +       //and starts with is
                 "/name";                                                //get the name
         return getViolatingMethods(str_expr);

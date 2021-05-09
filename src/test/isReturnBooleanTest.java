@@ -17,6 +17,16 @@ public class isReturnBooleanTest {
         return "yes";
     }
 
+    //3
+    //from replication kit
+    public int isDepleted(){
+        return 1;
+    }
+
+    //4
+
+    //5
+
 
     //Created method edge cases
     //6
