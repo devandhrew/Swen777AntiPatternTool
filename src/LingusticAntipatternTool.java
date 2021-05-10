@@ -212,7 +212,7 @@ public class LingusticAntipatternTool {
         String str_expr = "//function[" +                                //Functions
                 "not(contains(annotation/name, 'Test')) and (" +         //Not Noted as tests
                 "not(contains(type/name,'boolean') or " +               //And Does not have return type Bool
-                "contains(type/name, 'Boolean)))] " +                        //Or Capital Boolean
+                "contains(type/name, 'Boolean')))] " +                        //Or Capital Boolean
                 "[starts-with(translate(name,'IS','is'),'is')]" +       //and starts with is
                 "/name";                                                //get the name
         return getViolatingMethods(str_expr);
@@ -239,16 +239,16 @@ public class LingusticAntipatternTool {
      * @return          List of methods names that violate this rule
      */
     private static HashMap<String,ArrayList<String>> getValidationDoesNotConfirm() {
-        String str_expr = "//function[" + 
-                "not(contains(annotation/name,'Test')) and " + 
-                "not(contains(type/name,'boolean')) and " + 
-                "not(contains(throws,'throws'))]" + 
+        String str_expr = "//function[" +
+                "not(contains(annotation/name,'Test')) and " +
+                "not(contains(type/name,'boolean')) and " +
+                "not(contains(throws,'throws'))]" +
                 "[not(contains(.,'throw'))]" +
-                "[not(contains(.,'try')) and " + 
-                "not(contains(.,'catch'))]" + 
-                "[(starts-with(translate(name,'Validate','validate'), 'validate')) or " +
-                "(starts-with(translate(name,'Check','check'),'check')) or " + 
-                "(starts-with(translate(name,'Ensure','ensure'),'ensure'))] " +
+                "[not(contains(.,'try')) and " +
+                "not(contains(.,'catch'))]" +
+                "[(starts-with(translate(name,'VALIDATE','validate'), 'validate')) or " +
+                "(starts-with(translate(name,'CHECK','check'),'check')) or " +
+                "(starts-with(translate(name,'ENSURE','ensure'),'ensure'))] " +
                 "/name";                                                
 
         return getViolatingMethods(str_expr);
