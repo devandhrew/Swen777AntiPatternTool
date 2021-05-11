@@ -414,7 +414,7 @@
 }</block></class>
 </unit>
 
-<unit revision="1.0.0" language="Java" filename="test/validation.java" hash="c635a3e2f47018a86abd2c2c802ccf759a1c543f"><package>package <name><name>src</name><operator>.</operator><name>test</name></name>;</package>
+<unit revision="1.0.0" language="Java" filename="test/validation.java" hash="c60801718aa9d5624ba0ae2629ef35d0a5a9f4ac"><package>package <name><name>src</name><operator>.</operator><name>test</name></name>;</package>
 
 <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ExecutionException</name></name>;</import>
 
@@ -513,10 +513,8 @@
 
     <comment type="line">//6</comment>
     <comment type="line">//created method, starts with word</comment>
-    <function><type><specifier>public</specifier> <name>void</name></type> <name>checkersCount</name><parameter_list>()</parameter_list><block>{<block_content>
-        <if_stmt><if>if<condition>(<expr><literal type="boolean">true</literal></expr>)</condition><block>{<block_content>
-            <throw>throw <expr><operator>new</operator> <call><name>Exception</name><argument_list>()</argument_list></call></expr>;</throw>
-        </block_content>}</block></if></if_stmt>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>checkersCount</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">3</literal></expr>;</return>
     </block_content>}</block></function>
 
     <comment type="line">//7</comment>
@@ -554,6 +552,13 @@
         </block_content>}</block></catch></try>
     </block_content>}</block></function>
 
+    <comment type="line">//12</comment>
+    <comment type="line">//</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>ensureError</name><parameter_list>()</parameter_list><block>{<block_content>
+        <if_stmt><if>if<condition>(<expr><literal type="boolean">true</literal></expr>)</condition><block>{<block_content>
+            <throw>throw <expr><operator>new</operator> <call><name>Exception</name><argument_list>()</argument_list></call></expr>;</throw>
+        </block_content>}</block></if></if_stmt>
+    </block_content>}</block></function>
 
 
 }</block></class>

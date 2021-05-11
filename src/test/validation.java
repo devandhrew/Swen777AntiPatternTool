@@ -97,10 +97,8 @@ public class validation {
 
     //6
     //created method, starts with word
-    public void checkersCount(){
-        if(true){
-            throw new Exception();
-        }
+    public int checkersCount(){
+        return 3;
     }
 
     //7
@@ -138,6 +136,13 @@ public class validation {
         }
     }
 
+    //12
+    //
+    public void ensureError(){
+        if(true){
+            throw new Exception();
+        }
+    }
 
 
 }
