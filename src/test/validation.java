@@ -63,11 +63,6 @@ public class validation {
         return 1;
     }
 
-    //10 valid methods
-    public boolean checkIng(){
-        return true;
-    }
-
 
     //1'
     //"maven-master/maven-core/src/main/java/org/apache/maven/plugin/internal/DefaultMavenPluginManager.java
