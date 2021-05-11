@@ -57,6 +57,7 @@ public class LingusticAntipatternTool {
             printTestResult(violation_map);
             System.out.println("INFO: Check Complete: A.3 \"Set\" method returns");
 
+            //Run B.2 validation method does not confirm
             System.out.println("INFO: Running Check: B.2 \"Validation\" does no confirm");
             violation_map = getValidationDoesNotConfirm();
             printTestResult(violation_map);
@@ -209,10 +210,10 @@ public class LingusticAntipatternTool {
      * @return  Hash map of violating strings
      */
     private static  HashMap<String,ArrayList<String>> getIsReturnsMoreThanBoolean() {
-        String str_expr = "//function[" +                                //Functions
-                "not(contains(annotation/name, 'Test')) and (" +         //Not Noted as tests
+        String str_expr = "//function[" +                               //Functions
+                "not(contains(annotation/name, 'Test')) and (" +        //Not Noted as tests
                 "not(contains(type/name,'boolean') or " +               //And Does not have return type Bool
-                "contains(type/name, 'Boolean')))] " +                        //Or Capital Boolean
+                "contains(type/name, 'Boolean')))] " +                  //Or Capital Boolean
                 "[starts-with(translate(name,'IS','is'),'is')]" +       //and starts with is
                 "/name";                                                //get the name
         return getViolatingMethods(str_expr);
@@ -226,29 +227,29 @@ public class LingusticAntipatternTool {
     private static HashMap<String,ArrayList<String>> getSetMethodReturns() {
         String str_expr = "//function[" +
                 "not(contains(annotation/name, 'Test')) and " +             //Eliminates Test functions
-                "not(contains(type/name,'void'))]" +                        //Gets methods are not void
-                "[starts-with(translate(name,'SET','set'),'set')]" +          //Gets methods that start with set
+                "not(contains(type/name,'void'))]" +                        //sets methods are not void
+                "[starts-with(translate(name,'SET','set'),'set')]" +        //method that start with set
                 "/name";
 
         return getViolatingMethods(str_expr);
     }
 
     /**
-     * CHECK B.2: "Get" does not return
+     * CHECK B.2: validation method does not confirm
      *
      * @return          List of methods names that violate this rule
      */
     private static HashMap<String,ArrayList<String>> getValidationDoesNotConfirm() {
         String str_expr = "//function[" +
                 "not(contains(annotation/name,'Test')) and " +
-                "not(contains(type/name,'boolean')) and " +
-                "not(contains(throws,'throws'))]" +
-                "[not(contains(.,'throw'))]" +
-                "[not(contains(.,'try')) and " +
-                "not(contains(.,'catch'))]" +
-                "[(starts-with(translate(name,'VALIDATE','validate'), 'validate')) or " +
-                "(starts-with(translate(name,'CHECK','check'),'check')) or " +
-                "(starts-with(translate(name,'ENSURE','ensure'),'ensure'))] " +
+                "not(contains(type/name,'boolean')) and " +                                 //method name doesn't have boolean and 
+                "not(contains(throws,'throws'))]" +                                         //The method does not throw an exception and
+                "[not(contains(.,'throw'))]" +                                              //Method doesn't contain throw new exception
+                "[not(contains(.,'try')) and " +                                            //Method does not contain try
+                "not(contains(.,'catch'))]" +                                               //and catch
+                "[(starts-with(translate(name,'VALIDATE','validate'), 'validate')) or " +   //method starts with validate or
+                "(starts-with(translate(name,'CHECK','check'),'check')) or " +              //method starts with check or
+                "(starts-with(translate(name,'ENSURE','ensure'),'ensure'))] " +             //method starts with ensure or
                 "/name";                                                
 
         return getViolatingMethods(str_expr);
@@ -263,8 +264,8 @@ public class LingusticAntipatternTool {
         String str_expr = "//function[" +                                           //Gets function
                 "not(contains(annotation/name,'Test')) and " +                      //That is not test
                 "contains(type/name, 'void')]" +                                    //and is void
-                "[(starts-with(translate(name,'GET','get'), 'get')) or" +              //That starts with get
-                "(starts-with(translate(name,'RETURN','return'),'return'))]" +       //Or return
+                "[(starts-with(translate(name,'GET','get'), 'get')) or" +           //That starts with get
+                "(starts-with(translate(name,'RETURN','return'),'return'))]" +      //Or return
                 "/name";                                                            //the function name
 
         return getViolatingMethods(str_expr);

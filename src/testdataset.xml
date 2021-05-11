@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" url="test">
+
+<unit revision="1.0.0" language="Java" filename="test/getDoesNotReturnTest.java" hash="529738b5d1f27f33d9860b9161be74ab85c81aea"><package>package <name><name>src</name><operator>.</operator><name>test</name></name>;</package>
+
+<import>import <name><name>com</name><operator>.</operator><name>sun</name><operator>.</operator><name>jdi</name><operator>.</operator><name>Mirror</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>HashMap</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>getDoesNotReturnTest</name> <block>{
+    <comment type="line">//10 invalid methods</comment>
+
+    <comment type="line">//1</comment>
+    <comment type="line">//from replication kit</comment>
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>getUpstreamProducts</name><parameter_list>()</parameter_list><block>{<block_content>
+
+    </block_content>}</block></function>
+
+    <comment type="line">//2</comment>
+    <comment type="line">//from replication kit</comment>
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>getTaskAttributes</name><parameter_list>()</parameter_list><block>{<block_content>
+
+    </block_content>}</block></function>
+
+    <comment type="line">//3</comment>
+    <comment type="line">//from replication kit</comment>
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>returnNumber</name><parameter_list>()</parameter_list><block>{<block_content>
+    </block_content>}</block></function>
+
+    <comment type="line">//4</comment>
+    <comment type="line">//from replication kit</comment>
+    <function><type><specifier>private</specifier>  <name>void</name></type> <name>returnError</name><parameter_list>()</parameter_list><block>{<block_content>
+
+    </block_content>}</block></function>
+    <comment type="line">//5</comment>
+    <comment type="line">//from replication kit</comment>
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>getNewClassRoom</name><parameter_list>()</parameter_list><block>{<block_content>
+
+    </block_content>}</block></function>
+
+    <comment type="line">//Created method edge cases</comment>
+
+    <comment type="line">//6</comment>
+    <comment type="line">//Created method, detects all capitals</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>GETTime</name><parameter_list>()</parameter_list><block>{<block_content>
+    </block_content>}</block></function>
+
+    <comment type="line">//7</comment>
+    <comment type="line">//created method, simple name</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>get1</name><parameter_list>()</parameter_list><block>{<block_content>
+
+    </block_content>}</block></function>
+
+    <comment type="line">//8</comment>
+    <comment type="line">//created method, underscore</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>get_two</name><parameter_list>()</parameter_list><block>{<block_content>
+
+    </block_content>}</block></function>
+
+    <comment type="line">//9</comment>
+    <comment type="line">//created method, hungarian notation</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>iGetTwo</name><parameter_list>()</parameter_list><block>{<block_content>
+
+    </block_content>}</block></function>
+
+    <comment type="line">//10</comment>
+    <comment type="line">//method created, word twice in function</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>getGetting</name><parameter_list>()</parameter_list><block>{<block_content>
+    </block_content>}</block></function>
+
+
+    <comment type="line">//10 valid methods</comment>
+
+    <comment type="line">//1</comment>
+    <comment type="line">//from replication kit</comment>
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>getPath</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="string">"Path"</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//2</comment>
+    <comment type="line">//Apache/maven -&gt; maven-compact/src/main/java/org/apache/maven/DefaultMaven.java</comment>
+    <function><type><specifier>private</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>getProjectMap</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//3</comment>
+    <comment type="line">//Apache/maven -&gt; maven-compact/src/main/java/org/apache/mave/repository/DefaultMirrorSelector.java</comment>
+    <function><type><specifier>public</specifier> <name>Mirror</name></type> <name>getMirror</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="null">null</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//4</comment>
+    <comment type="line">//apache/tomcat -&gt; tomcat/java/org/apache/util.digester/Digester.java</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>getCount</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//5</comment>
+    <comment type="line">//Apache/maven -&gt; maven-compact/src/main/java/org/apache/maven/plugin/DefaultPluginDescriptorCache.java</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>get</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+
+    <comment type="line">//6</comment>
+    <comment type="line">//created method, starts with word</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>getawayMessage</name><parameter_list>()</parameter_list><block>{<block_content>
+
+    </block_content>}</block></function>
+
+    <comment type="line">//7</comment>
+    <comment type="line">//created method, underscore</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>get_one</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//8</comment>
+    <comment type="line">//created method, hungarian notation</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>iGetOne</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//9</comment>
+    <comment type="line">//created method, does not start, but contains string</comment>
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>whoIsGettingAway</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="string">"a"</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//10</comment>
+    <comment type="line">//method created, word twice in function</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>getGetter</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+
+}</block></class>
+</unit>
+
+<unit revision="1.0.0" language="Java" filename="test/isReturnBooleanTest.java" hash="a79b10aa968b08aedbf64cf486fcbb355ac0bf6d"><package>package <name><name>src</name><operator>.</operator><name>test</name></name>;</package>
+
+<import>import <name><name>com</name><operator>.</operator><name>sun</name><operator>.</operator><name>jdi</name><operator>.</operator><name>Mirror</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>isReturnBooleanTest</name> <block>{
+    <comment type="line">//10 invalid methods</comment>
+
+    <comment type="line">//1</comment>
+    <comment type="line">//From replication kit</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>isValid</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//2</comment>
+    <comment type="line">//from replication kit</comment>
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>isDependencyResolutionRequired</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="string">"yes"</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//3</comment>
+    <comment type="line">//from replication kit</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>isDepleted</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//4</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>isMapValid</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">0</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//5</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>isConnected</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">10</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//Created method edge cases</comment>
+    <comment type="line">//6</comment>
+    <comment type="line">//Created method, detects all capitals</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>ISFREE</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//7</comment>
+    <comment type="line">//created method, simple name</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>is</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//8</comment>
+    <comment type="line">//created method, underscore</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>is_one</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//9</comment>
+    <comment type="line">//created method, hungarian notation</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>vIsOne</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//10</comment>
+    <comment type="line">//method created, word twice in function</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>isIssue</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+
+
+
+    <comment type="line">//10 valid methods</comment>
+
+    <comment type="line">//1</comment>
+    <comment type="line">//Apache/maven -&gt; maven-compact/src/main/java/org/apache/maven/repository/DefaultMirrorSelector.java</comment>
+    <function><type><specifier>static</specifier> <name>boolean</name></type> <name>isExternalRepo</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//2</comment>
+    <comment type="line">//Apache/maven -&gt; maven-compact/src/main/java/org/apache/maven/repository/DefaultMirrorSelector.java</comment>
+    <function><type><specifier>private</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>isLocal</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//3</comment>
+    <comment type="line">//Apache/maven -&gt; maven-compact/src/main/java/org/apache/maven/repository/DefaultMirrorSelector.java</comment>
+    <function><type><specifier>static</specifier> <name>boolean</name></type> <name>isExternalHttpRepo</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//4</comment>
+    <comment type="line">//apache/tomcat -&gt; tomcat/java/org/apache/tomcat/JarScanner.java</comment>
+    <function><type><specifier>public</specifier> <name>boolean</name></type> <name>isSkipAll</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//5</comment>
+    <comment type="line">//apache/tomcat -&gt; tomcat/java/org/apache/util.digester/Digester.java</comment>
+    <function><type><specifier>public</specifier> <specifier>static</specifier> <name>boolean</name></type> <name>isGeneratedCodeLoaderSet</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    </block_content>}</block></function>
+
+
+    <comment type="line">//Created method edge cases</comment>
+    <comment type="line">//6</comment>
+    <comment type="line">//created method, starts with word</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>issueWarning</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//7</comment>
+    <comment type="line">//created method, underscore</comment>
+    <function><type><specifier>public</specifier> <name>boolean</name></type> <name>is_warning</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//8</comment>
+    <comment type="line">//created method, hungarian notation</comment>
+    <function><type><specifier>public</specifier> <name>Boolean</name></type> <name>bIsWarning</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//9</comment>
+    <comment type="line">//created method, does not start, but contains string</comment>
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>restoreIssue</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="string">"Settle"</literal></expr>;</return></block_content>}</block></function>
+
+    <comment type="line">//10</comment>
+    <comment type="line">//method created, word twice in function</comment>
+    <function><type><specifier>public</specifier> <name>boolean</name></type> <name>isIssued</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    </block_content>}</block></function>
+
+
+
+
+
+}</block></class>
+</unit>
+
+<unit revision="1.0.0" language="Java" filename="test/setReturnTest.java" hash="808bee0d4a0c06a2a23697ad296c81d7d5f61cbb"><package>package <name><name>src</name><operator>.</operator><name>test</name></name>;</package>
+
+<import>import <name><name>javax</name><operator>.</operator><name>management</name><operator>.</operator><name>ObjectName</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>awt</name><operator>.</operator><name>*</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>*</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>setReturnTest</name> <block>{
+
+    <comment type="line">//Ten discovered invalid methods</comment>
+
+    <comment type="line">//1</comment>
+    <comment type="line">//Violating method from replication package</comment>
+    <function><type><specifier>public</specifier> <specifier>synchronized</specifier> <name>Map</name></type> <name>setConnectionAsSharingClient</name><parameter_list>(<parameter><decl><type><name>Map</name></type> <name>map</name></decl></parameter>)</parameter_list><block>{<block_content>
+        <return>return <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>,<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//2</comment>
+    <comment type="line">//Violating method from replication package</comment>
+    <function><type><specifier>private</specifier> <name><name>double</name><index>[]</index></name></type> <name>setSubspaceInternal</name><parameter_list>()</parameter_list><block>{<block_content>
+        <decl_stmt><decl><type><name><name>double</name><index>[]</index></name></type> <name>f</name> <init>= <expr><block>{<expr><literal type="number">1.1</literal></expr>}</block></expr></init></decl>;</decl_stmt>
+        <return>return <expr><name>f</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//3</comment>
+    <comment type="line">//Violating method from replication package</comment>
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>setAnimationView</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="string">"AnimationView"</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//4</comment>
+    <comment type="line">//Violating method from replication package</comment>
+    <function><type><specifier>public</specifier> <name>Dimension</name></type> <name>setBreadth</name><parameter_list>(<parameter><decl><type><name>Dimension</name></type> <name>target</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>source</name></decl></parameter>)</parameter_list><block>{<block_content>
+        <return>return <expr><name>target</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//5</comment>
+    <comment type="line">//Violating method from replication package</comment>
+    <function><type><specifier>public</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name>Object</name></argument>&gt;</argument_list></name></type> <name>set_keygen_ctx</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+
+
+
+
+    <comment type="line">//Created method edge cases</comment>
+    <comment type="line">//6</comment>
+    <comment type="line">//Created method, detects all capitals</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>SET_free</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//7</comment>
+    <comment type="line">//created method, simple name</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>set</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//8</comment>
+    <comment type="line">//created method, underscore</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>set_one</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//9</comment>
+    <comment type="line">//created method, hungarian notation</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>vSetOne</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//10</comment>
+    <comment type="line">//method created, word twice in function</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>setSettlers</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+
+
+    <comment type="line">//Ten valid methods</comment>
+
+    <comment type="line">//1</comment>
+    <comment type="line">//apache/tomcat -&gt; tomcat/java/org/apache/tomcat/JarScanner.java</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setJarScanFilter</name><parameter_list>()</parameter_list><block>{<block_content>
+
+    </block_content>}</block></function>
+    <comment type="line">//2</comment>
+    <comment type="line">//apache/tomcat -&gt; tomcat/java/org/apache/util.digester/Digester.java</comment>
+    <function><type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>setGeneratedCodeLoader</name><parameter_list>()</parameter_list><block>{<block_content>
+
+    </block_content>}</block></function>
+    <comment type="line">//3</comment>
+    <comment type="line">//apache/tomcat -&gt; tomcat/java/org/apache/util.digester/Digester.java</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setKnown</name><parameter_list>()</parameter_list><block>{<block_content>
+
+    </block_content>}</block></function>
+
+    <comment type="line">//4</comment>
+    <comment type="line">//apache/tomcat -&gt; tomcat/java/org/apache/el/parser/AstDotSuffix.java</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setImage</name><parameter_list>()</parameter_list><block>{<block_content/>}</block></function>
+
+    <comment type="line">//5</comment>
+    <comment type="line">//apache/tomcat -&gt; tomcat/java/org/apache/el/parser/Node.java</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setValue</name><parameter_list>()</parameter_list><block>{<block_content>
+    </block_content>}</block></function>
+
+
+
+    <comment type="line">//Created method edge cases</comment>
+    <comment type="line">//6</comment>
+    <comment type="line">//created method, starts with word</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>settlersCount</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//7</comment>
+    <comment type="line">//created method, underscore</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>set_two</name><parameter_list>()</parameter_list><block>{<block_content>
+    </block_content>}</block></function>
+
+    <comment type="line">//8</comment>
+    <comment type="line">//created method, hungarian notation</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>vSetTwo</name><parameter_list>()</parameter_list><block>{<block_content>
+    </block_content>}</block></function>
+
+    <comment type="line">//9</comment>
+    <comment type="line">//created method, does not start, but contains string</comment>
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>restoreSettlers</name><parameter_list>()</parameter_list><block>{<block_content>
+    <return>return <expr><literal type="string">"Settle"</literal></expr>;</return></block_content>}</block></function>
+
+    <comment type="line">//10</comment>
+    <comment type="line">//method created, word twice in function</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setSettlement</name><parameter_list>()</parameter_list> <block>{<block_content>
+    </block_content>}</block></function>
+
+
+}</block></class>
+</unit>
+
+<unit revision="1.0.0" language="Java" filename="test/validation.java" hash="c635a3e2f47018a86abd2c2c802ccf759a1c543f"><package>package <name><name>src</name><operator>.</operator><name>test</name></name>;</package>
+
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ExecutionException</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>validation</name> <block>{
+    <comment type="line">//10 invalid methods</comment>
+    <comment type="line">//1</comment>
+    <comment type="line">//"maven-core/src/main/java/org/apache/maven/DefaultMaven.java"</comment>
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>validatePrerequisitesForNonMavenPluginProjects</name><parameter_list>()</parameter_list><block>{<block_content>
+
+    </block_content>}</block></function>
+    <comment type="line">//2</comment>
+    <comment type="line">//maven-artifact/src/test/java/org/apache/maven/artifact/versioning/VersionRangeTest.jav</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>checkInvalidRange</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//3</comment>
+    <comment type="line">//from replication kit</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>checkCollision</name><parameter_list>()</parameter_list><block>{<block_content>
+
+    </block_content>}</block></function>
+
+    <comment type="line">//4</comment>
+    <comment type="line">//from replication kit</comment>
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>checkRecordingFile</name><parameter_list>()</parameter_list><block>{<block_content>
+
+    </block_content>}</block></function>
+
+    <comment type="line">//5</comment>
+    <comment type="line">//from replication kit</comment>
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>checkVertices</name><parameter_list>()</parameter_list><block>{<block_content/>}</block></function>
+
+
+    <comment type="line">//Created method edge cases</comment>
+    <comment type="line">//6</comment>
+    <comment type="line">//Created method, detects all capitals</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>CHECK_Valid</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//7</comment>
+    <comment type="line">//created method, simple name</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>check</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//8</comment>
+    <comment type="line">//created method, underscore</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>validate_number</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//9</comment>
+    <comment type="line">//created method, hungarian notation</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>iEnsureValid</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//10</comment>
+    <comment type="line">//method created, word twice in function</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>validateChecker</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+
+    <comment type="line">//1'</comment>
+    <comment type="line">//"maven-master/maven-core/src/main/java/org/apache/maven/plugin/internal/DefaultMavenPluginManager.java</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>checkRequiredMavenVersion</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws><block>{<block_content>
+
+    </block_content>}</block></function>
+    <comment type="line">//2</comment>
+    <comment type="line">// "maven-master/maven-core/src/main/java/org/apache/maven/plugin/internal/DefaultMavenPluginManager.java</comment>
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>validateParameters</name> <parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws><block>{<block_content>
+
+    </block_content>}</block></function>
+
+    <comment type="line">//3</comment>
+    <comment type="line">//"maven-master/maven-core/src/main/java/org/apache/maven/plugin/internal/DefaultMavenPluginManager.java</comment>
+    <function><type><specifier>public</specifier> <name>boolean</name></type> <name>validateFileModel</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+
+    </block_content>}</block></function>
+
+    <comment type="line">//4</comment>
+    <comment type="line">//"maven-master/maven-core/src/main/java/org/apache/maven/lifecycle/internal/MojoExecutor.java"</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>ensureDependenciesAreResolved</name><parameter_list>()</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws><block>{<block_content>
+
+    </block_content>}</block></function>
+    <comment type="line">//5</comment>
+    <comment type="line">//maven-master/maven-model-builder/src/test/java/org/apache/maven/model/validation/DefaultModelValidatorTest.java</comment>
+    <function><type><specifier>private</specifier> <name>boolean</name></type> <name>validateRaw</name><parameter_list>( <parameter><decl><type><name>String</name></type> <name>pom</name></decl></parameter> )</parameter_list>
+            <throws>throws <argument><expr><name>Exception</name></expr></argument></throws><block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    </block_content>}</block></function>
+    <comment type="line">//Created method edge cases</comment>
+
+    <comment type="line">//6</comment>
+    <comment type="line">//created method, starts with word</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>checkersCount</name><parameter_list>()</parameter_list><block>{<block_content>
+        <if_stmt><if>if<condition>(<expr><literal type="boolean">true</literal></expr>)</condition><block>{<block_content>
+            <throw>throw <expr><operator>new</operator> <call><name>Exception</name><argument_list>()</argument_list></call></expr>;</throw>
+        </block_content>}</block></if></if_stmt>
+    </block_content>}</block></function>
+
+    <comment type="line">//7</comment>
+    <comment type="line">//created method, underscore</comment>
+    <function><type><specifier>public</specifier> <name>boolean</name></type> <name>check_valid</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//8</comment>
+    <comment type="line">//created method, hungarian notation</comment>
+    <function><type><specifier>public</specifier> <name>Boolean</name></type> <name>bCheckValid</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//9</comment>
+    <comment type="line">//created method, does not start, but contains string</comment>
+    <function><type><specifier>public</specifier> <name>int</name></type> <name>countCheckers</name><parameter_list>()</parameter_list><block>{<block_content>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//10</comment>
+    <comment type="line">//method created, word twice in function</comment>
+    <function><type><specifier>public</specifier> <name>boolean</name></type> <name>checkCheckers</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+    </block_content>}</block></function>
+
+    <comment type="line">//11</comment>
+    <comment type="line">//checks expetion type</comment>
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>checkError</name><parameter_list>()</parameter_list><block>{<block_content>
+        <try>try<block>{<block_content>
+
+        </block_content>}</block>
+        <catch>catch <parameter_list>(<parameter><decl><type><name>Exception</name></type> <name>e</name></decl></parameter>)</parameter_list><block>{<block_content>
+
+        </block_content>}</block></catch></try>
+    </block_content>}</block></function>
+
+
+
+}</block></class>
+</unit>
+
+</unit>
