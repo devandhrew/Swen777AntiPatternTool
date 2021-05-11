@@ -137,7 +137,7 @@
 }</block></class>
 </unit>
 
-<unit revision="1.0.0" language="Java" filename="test/isReturnBooleanTest.java" hash="a79b10aa968b08aedbf64cf486fcbb355ac0bf6d"><package>package <name><name>src</name><operator>.</operator><name>test</name></name>;</package>
+<unit revision="1.0.0" language="Java" filename="test/isReturnBooleanTest.java" hash="a2af76a0558004a7505f6f5648568e015985e680"><package>package <name><name>src</name><operator>.</operator><name>test</name></name>;</package>
 
 <import>import <name><name>com</name><operator>.</operator><name>sun</name><operator>.</operator><name>jdi</name><operator>.</operator><name>Mirror</name></name>;</import>
 
@@ -164,12 +164,12 @@
 
     <comment type="line">//4</comment>
     <function><type><specifier>public</specifier> <name>int</name></type> <name>isMapValid</name><parameter_list>()</parameter_list><block>{<block_content>
-        <return>return <expr><literal type="number">0</literal></expr>;</return>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
     </block_content>}</block></function>
-
+    
     <comment type="line">//5</comment>
     <function><type><specifier>public</specifier> <name>int</name></type> <name>isConnected</name><parameter_list>()</parameter_list><block>{<block_content>
-        <return>return <expr><literal type="number">10</literal></expr>;</return>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
     </block_content>}</block></function>
 
     <comment type="line">//Created method edge cases</comment>
@@ -414,7 +414,7 @@
 }</block></class>
 </unit>
 
-<unit revision="1.0.0" language="Java" filename="test/validation.java" hash="c60801718aa9d5624ba0ae2629ef35d0a5a9f4ac"><package>package <name><name>src</name><operator>.</operator><name>test</name></name>;</package>
+<unit revision="1.0.0" language="Java" filename="test/validation.java" hash="7e5b09fd1c6aa77a02a3c526f58c26a16bb5eb18"><package>package <name><name>src</name><operator>.</operator><name>test</name></name>;</package>
 
 <import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>concurrent</name><operator>.</operator><name>ExecutionException</name></name>;</import>
 
@@ -479,6 +479,7 @@
         <return>return <expr><literal type="number">1</literal></expr>;</return>
     </block_content>}</block></function>
 
+    <comment type="line">//10 valid methods</comment>
 
     <comment type="line">//1'</comment>
     <comment type="line">//"maven-master/maven-core/src/main/java/org/apache/maven/plugin/internal/DefaultMavenPluginManager.java</comment>
@@ -514,7 +515,7 @@
     <comment type="line">//6</comment>
     <comment type="line">//created method, starts with word</comment>
     <function><type><specifier>public</specifier> <name>int</name></type> <name>checkersCount</name><parameter_list>()</parameter_list><block>{<block_content>
-        <return>return <expr><literal type="number">3</literal></expr>;</return>
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
     </block_content>}</block></function>
 
     <comment type="line">//7</comment>
@@ -525,7 +526,7 @@
 
     <comment type="line">//8</comment>
     <comment type="line">//created method, hungarian notation</comment>
-    <function><type><specifier>public</specifier> <name>Boolean</name></type> <name>bCheckValid</name><parameter_list>()</parameter_list><block>{<block_content>
+    <function><type><specifier>public</specifier> <name>boolean</name></type> <name>bCheckValid</name><parameter_list>()</parameter_list><block>{<block_content>
         <return>return <expr><literal type="boolean">true</literal></expr>;</return>
     </block_content>}</block></function>
 
