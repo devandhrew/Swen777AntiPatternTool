@@ -63,6 +63,7 @@ public class validation {
         return 1;
     }
 
+    //10 valid methods
 
     //1'
     //"maven-master/maven-core/src/main/java/org/apache/maven/plugin/internal/DefaultMavenPluginManager.java
@@ -98,7 +99,7 @@ public class validation {
     //6
     //created method, starts with word
     public int checkersCount(){
-        return 3;
+        return 1;
     }
 
     //7
@@ -109,7 +110,7 @@ public class validation {
 
     //8
     //created method, hungarian notation
-    public Boolean bCheckValid(){
+    public boolean bCheckValid(){
         return true;
     }
 

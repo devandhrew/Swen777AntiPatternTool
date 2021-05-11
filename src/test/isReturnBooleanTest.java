@@ -25,12 +25,12 @@ public class isReturnBooleanTest {
 
     //4
     public int isMapValid(){
-        return 0;
+        return 1;
     }
-
+    
     //5
     public int isConnected(){
-        return 10;
+        return 1;
     }
 
     //Created method edge cases
