@@ -64,10 +64,6 @@ public class validation {
     }
 
     //10 valid methods
-    public boolean checkIng(){
-        return true;
-    }
-
 
     //1'
     //"maven-master/maven-core/src/main/java/org/apache/maven/plugin/internal/DefaultMavenPluginManager.java
@@ -114,7 +110,7 @@ public class validation {
 
     //8
     //created method, hungarian notation
-    public Boolean bCheckValid(){
+    public boolean bCheckValid(){
         return true;
     }
 
