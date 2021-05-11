@@ -117,7 +117,8 @@ public class validation {
     //9
     //created method, does not start, but contains string
     public int countCheckers(){
-        return 1;}
+        return 1;
+    }
 
     //10
     //method created, word twice in function
